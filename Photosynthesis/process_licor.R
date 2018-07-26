@@ -69,9 +69,9 @@ res <- licor_leaf %>% recalc_licor
 res %>% filter(uniqueid == "AAF6802") %>% select(Photo, HHMMSS)
 
 # plot leaf temperature/photosynthetic response by nutrient site
-res %>% 
+formatted <- res %>% 
   group_by(uniqueid, level, Taxon, Site) %>% 
-  summarise_at(vars(StmRat:VpdL), .funs = mean) %>% 
+  summarise_at(vars(StmRat:VpdL), .funs = mean) #%>% 
   ggplot(aes(x = Tleaf, y = Photo, colour = Site, group = uniqueid)) + 
   geom_point() + 
 #  geom_line() +
